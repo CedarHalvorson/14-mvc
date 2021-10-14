@@ -1,0 +1,15 @@
+<h1>welcome to the dashboard</h1> 
+{{#if loggedIn}}
+<button id="createBlogPost">Create  Post</button>
+{{/if}}
+
+{{#each posts}} 
+<p>{{title}}</p>
+<p>{{text}}</p>
+
+ {{/each}}
+
+
+<button id="goBackToHomepage">go back to homepage</button>
+<button id="logoutButton">logout</button>
+<script src="/js/dashboard.js"></script>

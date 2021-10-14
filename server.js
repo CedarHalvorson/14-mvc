@@ -2,6 +2,8 @@ const express = require('express');
 const session = require('express-session');
 const routes = require('./controllers');
 const expressHand = require('express-handlebars')
+const cookieParser = require("cookie-parser");
+const path = require('path')
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -24,14 +26,15 @@ app.set("view engine", "handlebars");
 
 
 app.use(session(sess));
+app.use(cookieParser());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log("Now listening on http://localhost/" + PORT));
+  app.listen(PORT, () => console.log("Now listening on http://localhost:" + PORT));
 });
 
 
