@@ -28,9 +28,9 @@ router.get("/dashboard", async (req, res) => {
             }
         })
     }
-
+console.log(allUserPosts);
     res.render("dashboard", {
-        posts: allUserPosts,
+        posts: allUserPosts.map(post => post.dataValues),
         loggedIn: req.session.isLoggedIn
     });
 });
